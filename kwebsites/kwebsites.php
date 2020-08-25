@@ -173,10 +173,10 @@ function kwurlc_mb() {
     include_once 'inc/curlexec.php';
     $kwurl = get_post_meta(get_the_ID(), 'URL', true);
     //Obtaining the URL content
-    /* $kwudat = new curlexec($kwurl);
-    $kwurldat = $kwudat->get_res(); */
-    $kwc = file_get_contents($kwurl);
-    $html_encoded = htmlentities($kwc);
-    echo $html_encoded;
-    //echo $kwurldat;   
+    $kwg = wp_remote_get($kwurl);
+    $kwudat = new curlexec($kwurl);
+    $kwurldat = $kwudat->get_res(); 
+    //Encoding and showing
+    $html_encoded = htmlentities($kwurldat);
+    echo $html_encoded; 
 }
